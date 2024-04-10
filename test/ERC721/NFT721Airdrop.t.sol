@@ -6,7 +6,7 @@ import {AirdropUtils} from "../utils/AidropUtils.t.sol";
 import {NFTAirdrop} from "../../src/ERC721/NFTAirdrop.sol";
 import {DeploymentHelper} from "../../script/utils/DeploymentHelper.sol";
 
-contract NFTAirdropTest is Test, AirdropUtils {
+contract NFT721AirdropTest is Test, AirdropUtils {
     struct DeploymentData {
         string baseURI;
         address[] receivers;
@@ -26,10 +26,9 @@ contract NFTAirdropTest is Test, AirdropUtils {
         });
     }
 
-    function test_721_deployAndAirdropNFTs() public {
+    function test_ERC721_deployAndAirdropNFTs() public {
         nft = new NFTAirdrop(deploymentData.baseURI, deploymentData.receivers);
 
-        string memory name = nft.name();
-        assertEq(name, "EMT - Incentivize NFT");
+        assertEq(nft.symbol(), "EMTI");
     }
 }

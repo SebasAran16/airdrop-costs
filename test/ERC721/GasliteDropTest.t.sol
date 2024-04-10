@@ -3,14 +3,14 @@ pragma solidity ^0.8.19;
 
 import {Test} from "forge-std/Test.sol";
 import {GasliteDrop} from "gasliteDrop/GasliteDrop.sol";
-import {NFT} from "../../src/ERC721/NFT.sol";
+import {NFT721} from "../../src/ERC721/NFT721.sol";
 import {DeployGasliteDrop} from "../../script/ERC721/DeployGasliteDrop.s.sol";
 import {AirdropUtils} from "../utils/AidropUtils.t.sol";
 import {DeploymentHelper} from "../../script/utils/DeploymentHelper.sol";
 
 contract GasliteDropTest is Test, AirdropUtils {
     GasliteDrop private gasliteDropContract;
-    NFT private nft;
+    NFT721 private nft;
 
     address[] private airdropAddresses;
     uint256[] private tokenIds;
@@ -20,7 +20,7 @@ contract GasliteDropTest is Test, AirdropUtils {
 
         gasliteDropContract = new GasliteDrop();
         (string memory baseURI, address owner, uint256 nftAmount) = deploymentHelper.getNFTDeploymentData();
-        nft = new NFT(baseURI, owner, nftAmount);
+        nft = new NFT721(baseURI, owner, nftAmount);
 
         uint256 totalAmount = nft.balanceOf(ANVIL_DEFAULT_ADDRESS);
 
@@ -32,7 +32,7 @@ contract GasliteDropTest is Test, AirdropUtils {
         }
     }
 
-    function test_721_sendsNFTToRandomAddresses() public {
+    function test_ERC721_sendsNFTToRandomAddresses() public {
         vm.startPrank(ANVIL_DEFAULT_ADDRESS);
         nft.setApprovalForAll(address(gasliteDropContract), true);
         gasliteDropContract.airdropERC721(address(nft), airdropAddresses, tokenIds);

@@ -3,6 +3,6 @@ src = "src"
 out = "out"
 libs = ["lib"]
 remappings = ["@openzeppelin/=lib/openzeppelin-contracts/", "gasliteDrop/=lib/GasliteDrop/contracts/src/"]
-gas_reports = ["NFTAirdrop", "NFT", "GasliteDrop"]
+gas-reports-ignore = ["DeploymentHelper"]
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
