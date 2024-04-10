@@ -1,0 +1,51 @@
+Compiling 9 files with 0.8.19
+Solc 0.8.19 finished in 4.20s
+Compiler run [32msuccessful![0m
+
+Ran 1 test for test/ERC721/NFT721Airdrop.t.sol:NFT721AirdropTest
+[32m[PASS][0m test_ERC721_deployAndAirdropNFTs() (gas: 5064338345)
+Suite result: [32mok[0m. [32m1[0m passed; [31m0[0m failed; [33m0[0m skipped; finished in 9.67s (1.03s CPU time)
+
+Ran 1 test for test/ERC1155/NFT1155Airdrop.t.sol:NFT1155AirdropTest
+[32m[PASS][0m test_ERC1155_deployAndAirdropNFTs() (gas: 4073293593)
+Suite result: [32mok[0m. [32m1[0m passed; [31m0[0m failed; [33m0[0m skipped; finished in 10.09s (1.47s CPU time)
+
+Ran 1 test for test/ERC721/GasliteDropTest.t.sol:GasliteDropTest
+[32m[PASS][0m test_ERC721_sendsNFTToRandomAddresses() (gas: 3950527790)
+Suite result: [32mok[0m. [32m1[0m passed; [31m0[0m failed; [33m0[0m skipped; finished in 11.57s (2.34s CPU time)
+| lib/GasliteDrop/contracts/src/GasliteDrop.sol:GasliteDrop contract |                 |            |            |            |         |
+|--------------------------------------------------------------------|-----------------|------------|------------|------------|---------|
+| Deployment Cost                                                    | Deployment Size |            |            |            |         |
+| 255128                                                             | 968             |            |            |            |         |
+| Function Name                                                      | min             | avg        | median     | max        | # calls |
+| airdropERC721                                                      | 3435035448      | 3435035448 | 3435035448 | 3435035448 | 1       |
+
+
+| src/ERC1155/NFT1155Airdrop.sol:NFT1155Airdrop contract |                 |      |        |      |         |
+|--------------------------------------------------------|-----------------|------|--------|------|---------|
+| Deployment Cost                                        | Deployment Size |      |        |      |         |
+| 3833914234                                             | 3207476         |      |        |      |         |
+| Function Name                                          | min             | avg  | median | max  | # calls |
+| uri                                                    | 1641            | 1641 | 1641   | 1641 | 1       |
+
+
+| src/ERC721/NFT721.sol:NFT721 contract |                 |       |        |       |         |
+|---------------------------------------|-----------------|-------|--------|-------|---------|
+| Deployment Cost                       | Deployment Size |       |        |       |         |
+| 2501451503                            | 5897            |       |        |       |         |
+| Function Name                         | min             | avg   | median | max   | # calls |
+| balanceOf                             | 634             | 634   | 634    | 634   | 1       |
+| setApprovalForAll                     | 46177           | 46177 | 46177  | 46177 | 1       |
+
+
+| src/ERC721/NFT721Airdrop.sol:NFT721Airdrop contract |                 |      |        |      |         |
+|-----------------------------------------------------|-----------------|------|--------|------|---------|
+| Deployment Cost                                     | Deployment Size |      |        |      |         |
+| 4824976933                                          | 3206113         |      |        |      |         |
+| Function Name                                       | min             | avg  | median | max  | # calls |
+| symbol                                              | 1306            | 1306 | 1306   | 1306 | 1       |
+
+
+
+
+Ran 3 test suites in 11.76s (31.34s CPU time): [32m3[0m tests passed, [31m0[0m failed, [33m0[0m skipped (3 total tests)
