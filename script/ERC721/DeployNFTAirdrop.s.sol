@@ -2,7 +2,7 @@
 pragma solidity ^0.8.19;
 
 import {Script} from "forge-std/Script.sol";
-import {NFTAirdrop} from "../../src/ERC721/NFTAirdrop.sol";
+import {NFT721Airdrop} from "../../src/ERC721/NFT721Airdrop.sol";
 import {IERC721} from "@openzeppelin/contracts/interfaces/IERC721.sol";
 import {DeploymentHelper} from "../utils/DeploymentHelper.sol";
 
@@ -15,7 +15,7 @@ contract DeployNFTAirdrop is Script {
         DeploymentHelper deploymentHelper = new DeploymentHelper();
         (string memory baseURI, address[] memory airdropAddresses) = deploymentHelper.getNFTAirdropDeploymentData();
 
-        NFTAirdrop nftAirdrop = new NFTAirdrop(baseURI, airdropAddresses);
+        NFT721Airdrop nftAirdrop = new NFT721Airdrop(baseURI, airdropAddresses);
         return IERC721(nftAirdrop);
     }
 }

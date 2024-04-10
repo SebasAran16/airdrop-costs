@@ -4,7 +4,7 @@ pragma solidity ^0.8.19;
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 
-contract NFTAirdrop is ERC721 {
+contract NFT721Airdrop is ERC721 {
     using Strings for uint256;
 
     string private constant BASE_EXTENSION = ".json";

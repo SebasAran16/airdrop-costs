@@ -3,7 +3,7 @@ pragma solidity ^0.8.19;
 
 import {Test} from "forge-std/Test.sol";
 import {AirdropUtils} from "../utils/AidropUtils.t.sol";
-import {NFTAirdrop} from "../../src/ERC721/NFTAirdrop.sol";
+import {NFT721Airdrop} from "../../src/ERC721/NFT721Airdrop.sol";
 import {DeploymentHelper} from "../../script/utils/DeploymentHelper.sol";
 
 contract NFT721AirdropTest is Test, AirdropUtils {
@@ -12,7 +12,7 @@ contract NFT721AirdropTest is Test, AirdropUtils {
         address[] receivers;
     }
 
-    NFTAirdrop private nft;
+    NFT721Airdrop private nft;
     DeploymentHelper private deploymentHelper;
     DeploymentData private deploymentData;
 
@@ -27,7 +27,7 @@ contract NFT721AirdropTest is Test, AirdropUtils {
     }
 
     function test_ERC721_deployAndAirdropNFTs() public {
-        nft = new NFTAirdrop(deploymentData.baseURI, deploymentData.receivers);
+        nft = new NFT721Airdrop(deploymentData.baseURI, deploymentData.receivers);
 
         assertEq(nft.symbol(), "EMTI");
     }
