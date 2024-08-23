@@ -31,10 +31,14 @@ contract GasliteDropTest is Test, AirdropUtils {
         }
     }
 
-    function test_ERC721_sendsNFTToRandomAddresses() public {
+    function test_ERC721_sendsNFTToRandomAddressesVerifyReceived() public {
         vm.startPrank(ANVIL_DEFAULT_ADDRESS);
         nft.setApprovalForAll(address(gasliteDropContract), true);
         gasliteDropContract.airdropERC721(address(nft), airdropAddresses, tokenIds);
         vm.stopPrank();
+
+        for (uint256 i; i < airdropAddresses.length; i++) {
+            vm.assertEq(NFT_AIRDROP_AMOUNT, nft.balanceOf(airdropAddresses[i]));
+        }
     }
 }

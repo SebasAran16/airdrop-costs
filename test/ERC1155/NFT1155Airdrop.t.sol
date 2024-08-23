@@ -16,6 +16,7 @@ contract NFT1155AirdropTest is Test, AirdropUtils {
   NFT1155Airdrop private nft;
   DeploymentHelper private deploymentHelper;
   DeploymentData private deploymentData;
+  uint256 private constant TOKEN_ID = 1;
 
   function setUp() public {
     deploymentHelper = new DeploymentHelper();
@@ -27,9 +28,11 @@ contract NFT1155AirdropTest is Test, AirdropUtils {
     });
   }
 
-  function test_ERC1155_deployAndAirdropNFTs() public {
+  function test_ERC1155_deployAndAirdropNFTsVerifyReceived() public {
     nft = new NFT1155Airdrop(deploymentData.baseURI, deploymentData.receivers);
 
-    assertEq(nft.uri(1), deploymentData.baseURI);
+    for (uint256 i; i < deploymentData.receivers.length; i ++) {
+      vm.assertEq(NFT_AIRDROP_AMOUNT, nft.balanceOf(deploymentData.receivers[i], TOKEN_ID));
+    }
   }
 }

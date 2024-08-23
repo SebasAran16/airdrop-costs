@@ -5,6 +5,9 @@ import {Test, console} from "forge-std/Test.sol";
 
 contract AirdropUtils is Test {
     address internal constant ANVIL_DEFAULT_ADDRESS = 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266;
+    uint256 internal constant NFT_AIRDROP_AMOUNT = 1;
+    uint256 internal constant ERC20_AIRDROP_AMOUNT = 1 ether;
+    uint256 internal constant ETH_AIRDROP_AMOUNT = 1 ether;
 
     function generateAirdropAddresses(uint256 airdropNumber) internal returns (address[] memory) {
         address[] memory airdropAddresses = new address[](airdropNumber);

@@ -10,7 +10,6 @@ contract ETHGasliteDropTest is Test, AirdropUtils {
   GasliteDrop private gasliteDropContract;
 
   uint256 private TOTAL_AIRDROP_AMOUNT = 1000;
-  uint256 private AIRDROP_AMOUNT = 1 ether;
   address[] private airdropAddresses;
   uint256[] private airdropAmounts;
   uint256 private ethToAirdrop;
@@ -19,14 +18,18 @@ contract ETHGasliteDropTest is Test, AirdropUtils {
     gasliteDropContract = new GasliteDrop();
 
     airdropAddresses = generateAirdropAddresses(TOTAL_AIRDROP_AMOUNT);
-    airdropAmounts = generateAmounts(AIRDROP_AMOUNT, TOTAL_AIRDROP_AMOUNT);
+    airdropAmounts = generateAmounts(ETH_AIRDROP_AMOUNT, TOTAL_AIRDROP_AMOUNT);
     ethToAirdrop = sumArray(airdropAmounts);
 
     vm.deal(ANVIL_DEFAULT_ADDRESS, ethToAirdrop);
   }
 
-  function test_ETH_sendsETHToRandomAddresses() public {
+  function test_ETH_sendsETHToRandomAddressesVerifyReceived() public {
     vm.prank(ANVIL_DEFAULT_ADDRESS);
     gasliteDropContract.airdropETH{value: ethToAirdrop}(airdropAddresses, airdropAmounts);
+
+    for (uint256 i; i < airdropAddresses.length; i++) {
+      vm.assertEq(ETH_AIRDROP_AMOUNT, airdropAddresses[i].balance);
+    }
   }
 }

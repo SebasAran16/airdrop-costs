@@ -13,7 +13,6 @@ contract GasliteDropTest is Test, AirdropUtils {
     ERC20 private token;
 
     uint256 private TOTAL_AIRDROP_AMOUNT = 1000;
-    uint256 private AIRDROP_AMOUNT = 1 ether;
     address[] private airdropAddresses;
     uint256[] private tokenIds;
     uint256[] private airdropAmounts;
@@ -28,7 +27,7 @@ contract GasliteDropTest is Test, AirdropUtils {
         token = tokenDeployer.run();
 
         airdropAddresses = generateAirdropAddresses(totalAmount);
-        airdropAmounts = generateAmounts(AIRDROP_AMOUNT, TOTAL_AIRDROP_AMOUNT);
+        airdropAmounts = generateAmounts(ERC20_AIRDROP_AMOUNT, TOTAL_AIRDROP_AMOUNT);
         tokenToAirdrop = sumArray(airdropAmounts);
 
         vm.prank(ANVIL_DEFAULT_ADDRESS);

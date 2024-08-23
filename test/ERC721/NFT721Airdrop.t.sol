@@ -26,9 +26,11 @@ contract NFT721AirdropTest is Test, AirdropUtils {
         });
     }
 
-    function test_ERC721_deployAndAirdropNFTs() public {
+    function test_ERC721_deployAndAirdropNFTsVerifyReceived() public {
         nft = new NFT721Airdrop(deploymentData.baseURI, deploymentData.receivers);
 
-        assertEq(nft.symbol(), "EMTI");
+        for (uint256 i; i < deploymentData.receivers.length; i ++) {
+            vm.assertEq(NFT_AIRDROP_AMOUNT, nft.balanceOf(deploymentData.receivers[i]));
+        }
     }
 }
