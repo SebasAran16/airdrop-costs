@@ -15,7 +15,8 @@ contract ETHGasliteDropTest is Test, AirdropUtils {
   uint256 private ethToAirdrop;
 
   function setUp() public {
-    gasliteDropContract = new GasliteDrop();
+    DeployGasliteDrop gasliteDropDeployer = new DeployGasliteDrop();
+    gasliteDropContract = gasliteDropDeployer.run();
 
     airdropAddresses = generateAirdropAddresses(TOTAL_AIRDROP_AMOUNT);
     airdropAmounts = generateAmounts(ETH_AIRDROP_AMOUNT, TOTAL_AIRDROP_AMOUNT);
