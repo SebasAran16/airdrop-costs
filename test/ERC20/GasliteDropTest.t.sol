@@ -4,7 +4,7 @@ pragma solidity ^0.8.19;
 import {Test} from "forge-std/Test.sol";
 import {GasliteDrop} from "gasliteDrop/GasliteDrop.sol";
 import {ERC20} from "../../lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
-import {DeployGasliteDrop} from "../../script/ERC721/DeployGasliteDrop.s.sol";
+import {DeployGasliteDrop} from "../../script/DeployGasliteDrop.s.sol";
 import {AirdropUtils} from "../utils/AidropUtils.t.sol";
 import {DeployERC20} from "../../script/ERC20/DeployERC20.s.sol";
 
@@ -23,7 +23,8 @@ contract GasliteDropTest is Test, AirdropUtils {
         DeployERC20 tokenDeployer = new DeployERC20();
         uint256 totalAmount = 1_000;
 
-        gasliteDropContract = new GasliteDrop();
+        DeployGasliteDrop gasliteDropDeployer = new DeployGasliteDrop();
+        gasliteDropContract = gasliteDropDeployer.run();
         token = tokenDeployer.run();
 
         airdropAddresses = generateAirdropAddresses(totalAmount);

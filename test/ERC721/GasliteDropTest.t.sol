@@ -3,24 +3,23 @@ pragma solidity ^0.8.19;
 
 import {Test} from "forge-std/Test.sol";
 import {GasliteDrop} from "gasliteDrop/GasliteDrop.sol";
-import {NFT721} from "../../src/ERC721/NFT721.sol";
-import {DeployGasliteDrop} from "../../script/ERC721/DeployGasliteDrop.s.sol";
+import {IERC721} from "../../lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol";
+import {DeployGasliteDrop} from "../../script/DeployGasliteDrop.s.sol";
 import {AirdropUtils} from "../utils/AidropUtils.t.sol";
-import {DeploymentHelper} from "../../script/utils/DeploymentHelper.sol";
+import {DeployNFT} from "../../script/ERC721/DeployNFT.s.sol";
 
 contract GasliteDropTest is Test, AirdropUtils {
     GasliteDrop private gasliteDropContract;
-    NFT721 private nft;
+    IERC721 private nft;
 
     address[] private airdropAddresses;
     uint256[] private tokenIds;
 
     function setUp() public {
-        DeploymentHelper deploymentHelper = new DeploymentHelper();
-
-        gasliteDropContract = new GasliteDrop();
-        (string memory baseURI, address owner, uint256 nftAmount) = deploymentHelper.getNFTDeploymentData();
-        nft = new NFT721(baseURI, owner, nftAmount);
+        DeployGasliteDrop gasliteDropDeployer = new DeployGasliteDrop();
+        gasliteDropContract = gasliteDropDeployer.run();
+        DeployNFT nftDeployer = new DeployNFT();
+        nft = nftDeployer.run();
 
         uint256 totalAmount = nft.balanceOf(ANVIL_DEFAULT_ADDRESS);
 

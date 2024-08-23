@@ -3,7 +3,7 @@ pragma solidity ^0.8.19;
 
 import {Test, console} from "forge-std/Test.sol";
 import {GasliteDrop} from "gasliteDrop/GasliteDrop.sol";
-import {DeployGasliteDrop} from "../../script/ERC721/DeployGasliteDrop.s.sol";
+import {DeployGasliteDrop} from "../../script/DeployGasliteDrop.s.sol";
 import {AirdropUtils} from "../utils/AidropUtils.t.sol";
 
 contract ETHGasliteDropTest is Test, AirdropUtils {
