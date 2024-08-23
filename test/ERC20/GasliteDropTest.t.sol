@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import {Test} from "forge-std/Test.sol";
+import {Test,console} from "forge-std/Test.sol";
 import {GasliteDrop} from "gasliteDrop/GasliteDrop.sol";
 import {ERC20} from "../../lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
 import {DeployGasliteDrop} from "../../script/DeployGasliteDrop.s.sol";
@@ -35,8 +35,12 @@ contract GasliteDropTest is Test, AirdropUtils {
         token.approve(address(gasliteDropContract), tokenToAirdrop);
     }
 
-    function test_ERC20_sendsTokenToRandomAddresses() public {
+    function test_ERC20_sendsTokenToRandomAddressesVerifyReceived() public {
         vm.prank(ANVIL_DEFAULT_ADDRESS);
         gasliteDropContract.airdropERC20(address(token), airdropAddresses, airdropAmounts, tokenToAirdrop);
+
+        for (uint256 i; i < airdropAddresses.length; i++) {
+            vm.assertEq(token.balanceOf(airdropAddresses[i]), airdropAmounts[i]);
+        }
     }
 }
