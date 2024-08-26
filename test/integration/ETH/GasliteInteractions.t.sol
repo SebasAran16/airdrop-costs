@@ -8,23 +8,23 @@ import {AirdropETHGasliteAirdrop} from "../../../script/GasliteDropInteractions.
 import {InteractionsHelper} from "../../../script/utils/InteractionsHelper.sol";
 
 contract ETHGasliteDropTest is Test, AirdropUtils {
-  address[] private airdropAddresses;
-  uint256[] private airdropAmounts;
-  uint256 private ethToAirdrop;
+    address[] private airdropAddresses;
+    uint256[] private airdropAmounts;
+    uint256 private ethToAirdrop;
 
-  function setUp() public {
-    InteractionsHelper interactionsHelper = new InteractionsHelper();
+    function setUp() public {
+        InteractionsHelper interactionsHelper = new InteractionsHelper();
 
-    (airdropAmounts, airdropAddresses, ethToAirdrop) = interactionsHelper.getETHAirdropData();
-  }
-
-  function test_ETH_useAirdropInteractionVerifyAddressesReceivedAmounts() public {
-    AirdropETHGasliteAirdrop airdropETHScript = new AirdropETHGasliteAirdrop();
-
-    airdropETHScript.run();
-
-    for (uint256 i; i < airdropAddresses.length; i++) {
-      vm.assertEq(ETH_AIRDROP_AMOUNT, airdropAddresses[i].balance);
+        (airdropAmounts, airdropAddresses, ethToAirdrop) = interactionsHelper.getETHAirdropData();
     }
-  }
+
+    function test_ETH_useAirdropInteractionVerifyAddressesReceivedAmounts() public {
+        AirdropETHGasliteAirdrop airdropETHScript = new AirdropETHGasliteAirdrop();
+
+        airdropETHScript.run();
+
+        for (uint256 i; i < airdropAddresses.length; i++) {
+            vm.assertEq(ETH_AIRDROP_AMOUNT, airdropAddresses[i].balance);
+        }
+    }
 }

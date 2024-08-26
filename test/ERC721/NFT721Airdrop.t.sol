@@ -20,16 +20,13 @@ contract NFT721AirdropTest is Test, AirdropUtils {
         deploymentHelper = new DeploymentHelper();
         (string memory baseURI, address[] memory airdropAddresses) = deploymentHelper.getNFTAirdropDeploymentData();
 
-        deploymentData = DeploymentData({
-            baseURI: baseURI,
-            receivers: airdropAddresses
-        });
+        deploymentData = DeploymentData({baseURI: baseURI, receivers: airdropAddresses});
     }
 
     function test_ERC721_deployAndAirdropNFTsVerifyReceived() public {
         nft = new NFT721Airdrop(deploymentData.baseURI, deploymentData.receivers);
 
-        for (uint256 i; i < deploymentData.receivers.length; i ++) {
+        for (uint256 i; i < deploymentData.receivers.length; i++) {
             vm.assertEq(NFT_AIRDROP_AMOUNT, nft.balanceOf(deploymentData.receivers[i]));
         }
     }

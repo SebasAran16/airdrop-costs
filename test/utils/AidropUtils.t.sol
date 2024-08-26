@@ -19,7 +19,7 @@ contract AirdropUtils is Test {
         return airdropAddresses;
     }
 
-    function generateAmounts(uint256 amount, uint256 airdropNumber) pure internal returns (uint256[] memory) {
+    function generateAmounts(uint256 amount, uint256 airdropNumber) internal pure returns (uint256[] memory) {
         uint256[] memory airdropAmounts = new uint256[](airdropNumber);
 
         for (uint256 i; i < airdropNumber; i++) {

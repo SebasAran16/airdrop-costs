@@ -7,15 +7,16 @@ import {ERC20} from "../../lib/openzeppelin-contracts/contracts/token/ERC20/ERC2
 import {TestToken} from "../../src/ERC20/TestERC20.sol";
 
 contract DeployERC20 is Script {
-  function run() public returns (ERC20) {
-    return deployToken();
-  }
+    function run() public returns (ERC20) {
+        return deployToken();
+    }
 
-  function deployToken() public returns (ERC20) {
-    DeploymentHelper deploymentHelper = new DeploymentHelper();
-    (string memory tokenName, string memory tokenSymbol, address distributor, uint256 tokenSupply) = deploymentHelper.getTokenDeploymentData();
+    function deployToken() public returns (ERC20) {
+        DeploymentHelper deploymentHelper = new DeploymentHelper();
+        (string memory tokenName, string memory tokenSymbol, address distributor, uint256 tokenSupply) =
+            deploymentHelper.getTokenDeploymentData();
 
-    TestToken token = new TestToken(tokenName, tokenSymbol, distributor, tokenSupply);
-    return ERC20(token);
-  }
+        TestToken token = new TestToken(tokenName, tokenSymbol, distributor, tokenSupply);
+        return ERC20(token);
+    }
 }

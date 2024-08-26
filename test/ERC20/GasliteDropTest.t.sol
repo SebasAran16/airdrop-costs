@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import {Test,console} from "forge-std/Test.sol";
+import {Test, console} from "forge-std/Test.sol";
 import {GasliteDrop} from "gasliteDrop/GasliteDrop.sol";
 import {ERC20} from "../../lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
 import {DeployGasliteDrop} from "../../script/DeployGasliteDrop.s.sol";
