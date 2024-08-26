@@ -10,6 +10,7 @@ contract DeployGasliteDrop is Script {
     }
 
     function deployGasliteDrop() public returns (GasliteDrop) {
+        vm.broadcast();
         return new GasliteDrop();
     }
 }
